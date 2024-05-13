@@ -1,10 +1,8 @@
-import Navbar from "@/components/navbar";
 import Link from "next/link";
 export default function HomePage() {
   return (
-    <main className="flex-1 md:w-10/12 lg:w-8/12 mx-auto">
+    <main className="flex-1">
       {/* Navigation */}
-      <Navbar/>
 
       {/* Main content */}
       <div className="flex-1 flex flex-col ">

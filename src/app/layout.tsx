@@ -1,7 +1,7 @@
 import Navbar from "@/components/navbar";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
-
+import PageLayout from "@/components/pageLayout";
 
 import { GeistSans } from "geist/font/sans";
 export const metadata = {
@@ -17,16 +17,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body className=" ">
-      <ThemeProvider
+      <body >
+        <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark" 
             enableSystem
             disableTransitionOnChange
           >
+            <PageLayout>
+        <Navbar/>
 
         {children}
+        </PageLayout>
+
         </ThemeProvider>
+     
 
         </body>
     </html>

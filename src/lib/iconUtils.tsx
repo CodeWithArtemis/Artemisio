@@ -2,6 +2,7 @@
 import React from 'react';
 import { FaGithub, FaTwitter, FaYoutube, FaHome, FaCode } from 'react-icons/fa';
 import { MdArticle, MdConnectWithoutContact, MdDarkMode } from 'react-icons/md';
+import { IoMdContact } from "react-icons/io";
 
 const renderIcon = (iconName:string) => {
   switch (iconName) {
@@ -21,6 +22,8 @@ const renderIcon = (iconName:string) => {
       return <MdConnectWithoutContact className='text-[1.4vw]'/>;
     case 'MdDarkMode':
       return <MdDarkMode className='text-[1.4vw]'/>;
+    case 'IoMdContact':
+      return <IoMdContact className='text-[1.4vw]'/>;
     default:
       return null;
   }

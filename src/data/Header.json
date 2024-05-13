@@ -17,8 +17,8 @@
       },
       {
         "title": "Contacts",
-        "icon": "mdConnectWithoutContact",
-        "link": "/"
+        "icon": "IoMdContact",
+        "link": "/contacts"
       }
     ],
     
