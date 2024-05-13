@@ -1,13 +1,10 @@
 import Link from "next/link";
-
+import Navbar from "@/components/navbar";
 export default function HomePage() {
   return (
-    <div className="mx-auto h-screen flex flex-col max-w-5xl">
+    <main className="flex-1 md:w-10/12 lg:w-8/12 mx-auto">
       {/* Navigation */}
-      <nav className="h-10 bg-gray-200 flex items-center justify-between px-4">
-        <div className="text-2xl font-bold text-text">Artemisio</div>
-        <div className="bg-slate-700 px-5 py-2 text-white">Links, Theme changer</div>
-      </nav>
+     <Navbar/>
 
       {/* Main content */}
       <div className="flex-1 flex flex-col">
@@ -29,6 +26,6 @@ export default function HomePage() {
           BLOGS
         </div>
       </div>
-    </div>
+    </main>
   );
 }
