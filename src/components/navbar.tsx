@@ -2,82 +2,47 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import { FaGithub } from "react-icons/fa";
-import { FaHome } from "react-icons/fa";
-import { FaCode } from "react-icons/fa";
-import { MdArticle } from "react-icons/md";
-import { MdConnectWithoutContact } from "react-icons/md";
-import { usePathname } from "next/navigation";
-import { FaTwitter } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa";
+import renderIcon from "@/lib/iconUtils";
+import {FaGithub, FaTwitter, FaYoutube} from "react-icons/fa";
+import data from "@/data/Header.json";
 import { MdDarkMode } from "react-icons/md";
+import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
-    const pathName=usePathname();
+    const {links,socialLinks,}=data
     return (
-    <header className=" mx-auto h-[15v] w-full items-center  justify-between border-b-2 pt-4">
+    <header className=" mx-auto h-[15v] w-full items-center  justify-between  pt-4">
       <div className="mx-auto flex flex-row items-center  justify-between  py-2">
         <Link className="font-bold" href="/">
           <div className="text-2xl font-bold first-letter:text-3xl ">
             Artemisio
           </div>
         </Link>
-        <nav className="flex items-center space-x-2 ">
-          <Link href="github.com">
-            <FaGithub />
-          </Link>
-          
-            <a>
-            <FaTwitter />
-
-            </a>
-            <a>
-            <FaYoutube />
-
-            </a>
-            <MdDarkMode />
-
-        </nav>
+        <nav className="flex items-center space-x-2">
+      {
+        socialLinks.map((link,index)=>(
+                <Link href={link.link} key={index}  className="flex cursor-pointer ">
+                    {renderIcon(link.icon)}
+                </Link>
+        ))
+      }
+      </nav>
       </div>
-      <div className="bg-red">
-        <div className="flex items-center justify-start  space-x-2 ">
-          <Link
-            href="/"
-            className="flex cursor-pointer items-center  justify-center  space-x-1 py-3    "
-          >
-            <FaHome className="text-[1.4vw] " />
-            <div className="pt-1  transition-all duration-150 hover:text-subtext0">
-              Home
-            </div>
-          </Link>
-          <Link
-            href="/"
-            className="flex cursor-pointer items-center  justify-center  space-x-1 py-3    "
-          >
-            <FaCode className="text-[1.4vw] " />
-            <div className="pt-1  transition-all duration-150 hover:text-subtext0">
-              Projects
-            </div>
-          </Link>
-          <Link
-            href="/"
-            className="flex cursor-pointer items-center  justify-center  space-x-1 py-3    "
-          >
-            <MdArticle className="text-[1.4vw] " />
-            <div className="pt-1  transition-all duration-150 hover:text-subtext0">
-              Blogs
-            </div>
-            </Link>
-          <Link
-            href="/"
-            className="flex cursor-pointer items-center  justify-center  space-x-1 py-3    ">
-            <MdConnectWithoutContact className="text-[1.4vw] " />
-            <div className="pt-1  transition-all duration-150 hover:text-subtext0 ">
-              Contacts
-            </div>
-          </Link>
-        </div>
-      </div>
+      <div className="flex items-center justify-start  space-x-2 ">
+{
+    links.map((link,index)=>(
+<Link href={link.link} key={index}  className="flex cursor-pointer items-center  justify-center  space-x-1 py-3">
+    {renderIcon(link.icon)}
+    <div className="pt-1  transition-all duration-150 hover:text-subtext0">
+        {link.title}
+    </div>
+
+</Link>
+    ))
+}
+</div>
+
     </header>
   );
 };

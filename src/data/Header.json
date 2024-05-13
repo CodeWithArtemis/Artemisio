@@ -1,0 +1,42 @@
+{
+    "links": [
+      {
+        "title": "Home",
+        "icon": "FaHome",
+        "link": "/"
+      },
+      {
+        "title": "Projects",
+        "icon": "FaCode",
+        "link": "/projects"
+      },
+      {
+        "title": "Blogs",
+        "icon": "MdArticle",
+        "link": "/blogs"
+      },
+      {
+        "title": "Contacts",
+        "icon": "mdConnectWithoutContact",
+        "link": "/"
+      }
+    ],
+    
+      "socialLinks": [
+        {
+          "icon": "FaGithub",
+          "link": "github.com"
+        },
+        {
+          "icon": "FaTwitter",
+          "link": "twitter.com"
+        },
+        {
+          "icon": "FaYoutube",
+          "link": "youtube.com"
+        }
+      ],
+      "darkModeIcon": true
+    }
+    
+  

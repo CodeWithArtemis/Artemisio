@@ -1,15 +1,13 @@
 import Link from "next/link";
-import Navbar from "@/components/navbar";
 export default function HomePage() {
   return (
-    <main className="flex-1 md:w-10/12 lg:w-8/12 mx-auto">
+    <main className="">
       {/* Navigation */}
-     <Navbar/>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col ">
         {/* Description */}
-        <div className="h-30 bg-slate-500 flex items-center justify-center px-4 py-10 text-2xl ">
+        <div className="h-30 bg-slate-500 flex items-center justify-center px-4 py-10 text-2xl  border-b-2 w-full">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet,
           corporis laboriosam quidem maxime adipisci cumque praesentium deserunt
           repellat repudiandae reiciendis ipsam mollitia nisi voluptatibus,
