@@ -1,5 +1,7 @@
 import Navbar from "@/components/navbar";
 import "@/styles/globals.css";
+import { ThemeProvider } from "@/components/theme-provider"
+
 
 import { GeistSans } from "geist/font/sans";
 export const metadata = {
@@ -15,10 +17,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body className="flex-1 md:w-10/12 lg:w-8/12 mx-auto border-b-2">
-     <Navbar/>
+      <body className=" ">
+      <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
 
-        {children}</body>
+        {children}
+        </ThemeProvider>
+
+        </body>
     </html>
   );
 }

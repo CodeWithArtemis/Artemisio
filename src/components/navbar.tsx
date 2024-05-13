@@ -1,18 +1,15 @@
 'use client';
 import Link from "next/link";
 import React from "react";
-import Image from "next/image";
 import renderIcon from "@/lib/iconUtils";
-import {FaGithub, FaTwitter, FaYoutube} from "react-icons/fa";
 import data from "@/data/Header.json";
-import { MdDarkMode } from "react-icons/md";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-
+import { ModeToggle } from "./theme-button";
 const Navbar = () => {
     const {links,socialLinks,}=data
     return (
-    <header className=" mx-auto h-[15v] w-full items-center  justify-between  pt-4">
+    <header className=" mx-auto h-[15v] w-full items-center  justify-between  pt-4 ">
       <div className="mx-auto flex flex-row items-center  justify-between  py-2">
         <Link className="font-bold" href="/">
           <div className="text-2xl font-bold first-letter:text-3xl ">
@@ -20,13 +17,18 @@ const Navbar = () => {
           </div>
         </Link>
         <nav className="flex items-center space-x-2">
+    <div  className="flex items-center space-x-2">
       {
         socialLinks.map((link,index)=>(
-                <Link href={link.link} key={index}  className="flex cursor-pointer ">
+               <Link href={link.link} key={index}  className="flex cursor-pointer ">
                     {renderIcon(link.icon)}
                 </Link>
         ))
+        
       }
+                      <ModeToggle/>
+                      </div>
+
       </nav>
       </div>
       <div className="flex items-center justify-start  space-x-2 ">
