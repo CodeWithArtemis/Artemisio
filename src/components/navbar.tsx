@@ -26,7 +26,7 @@ const Navbar = () => {
       {
         socialLinks.map((link,index)=>(
             <div className="" key={index}>
-  <Link href={link.link} key={index}  className="flex cursor-pointer p-[0.4rem]   border-[1px] hover:text rounded-sm hover:bg-accent "> 
+  <Link href={link.link} key={index}  className="flex cursor-pointer p-[0.65rem]    border-[1px] hover:text rounded-sm hover:bg-accent "> 
                     {renderIcon(link.icon)}
                 </Link>
             </div>
@@ -44,7 +44,7 @@ const Navbar = () => {
     links.map((link,index)=>(
 <Link href={link.link} key={index}  className="flex cursor-pointer items-center  justify-center   space-x-1 py-3 "> 
     {renderIcon(link.icon)}
-    <div className={cn("pt-1  transition-all duration-150 hover:text-accent-foreground",isActive(link.link)?"":"text-accent dark:text-accent dark:hover:text-subtext0")}>
+    <div className={cn("pt-1  transition-all duration-150 hover:text-accent-foreground",isActive(link.link)?"":"text-accent dark:text-surface2 dark:hover:text-subtext0")}>
         {link.title}
 
     </div>
