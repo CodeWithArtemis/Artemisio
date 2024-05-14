@@ -6,12 +6,12 @@ export default function HomePage() {
   return (
     <main className="flex-1">
       {/* Main content */}
-      <div className="flex-1 flex flex-col ">
+      <div className="flex-1 flex  flex-col ">
         {/* Description */}
       <Bio/>
       <div className=" py-2 flex justify-between items-center">
         <span className="text-2xl font-bold">Latest Repositories </span>
-        <Link href="https://github.com/CodeWithArtemis" className="text-mauve hover:text-mauve/100">
+        <Link href="https://github.com/CodeWithArtemis" className="text-mauve/80 hover:text-mauve">
         See More..
         </Link>
       </div>
