@@ -1,3 +1,4 @@
+import Bio from "@/components/bio";
 import Link from "next/link";
 export default function HomePage() {
   return (
@@ -7,13 +8,7 @@ export default function HomePage() {
       {/* Main content */}
       <div className="flex-1 flex flex-col ">
         {/* Description */}
-        <div className="h-30 bg-slate-500 flex items-center justify-center px-4 py-10 text-2xl  border-b-2">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet,
-          corporis laboriosam quidem maxime adipisci cumque praesentium deserunt
-          repellat repudiandae reiciendis ipsam mollitia nisi voluptatibus,
-          veniam dolorum incidunt aut quam vitae.
-        </div>
-
+      <Bio/>
         {/* Projects */}
         <div className="flex-1 bg-surface0 flex items-center justify-center">
           Projects
