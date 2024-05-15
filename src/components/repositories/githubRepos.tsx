@@ -19,23 +19,27 @@ useEffect(()=>{
         } catch (error) {
             console.error("Error fetching repos:", error);
         }
-    };
-    fetchRepos();
+    }
+    void fetchRepos(); // Make sure to handle the promise here
 }, []);
 
     return (
-
-<div className="grid grid-cols-3 gap-4  min-h-[40vh]">
+<div>
 {repos.length > 0 ? (
-                repos.map((repo,index) =>
+<div className="grid grid-cols-3 gap-4  min-h-[40vh]">
+
+                {repos.map((repo,index) =>
                     <RepoCard  key={index} props={repo}/> 
-                )
+                )}
+        </div>
+
             ) : (
-                <div className="flex flex-col items-center mx-auto justify-center h-full">
-                    <h1 className="text-gray-700 text-2xl font-bold">Loading Repositories...</h1>
+                <div className="justify-center flex items-center mx-auto my-auto h-full min-h-[40vh]">
+                    <h1 className="text-accent-foreground dark:text-primary items-center justify-center text-2xl ">Loading Repositories...</h1>
                 </div>
             )}
-        </div>
+</div>
+
 
     )
 }

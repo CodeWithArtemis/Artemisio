@@ -5,7 +5,7 @@ import renderIcon from "@/lib/iconUtils";
 import data from "@/data/Header.json";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { ModeToggle } from "./theme-button";
+import { ModeToggle } from "../theme/theme-button";
 
 const Navbar = () => {
     const pathname = usePathname();

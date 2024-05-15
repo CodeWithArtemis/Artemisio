@@ -1,7 +1,7 @@
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/header/header";
 import "@/styles/globals.css";
-import { ThemeProvider } from "@/components/theme-provider"
-import PageLayout from "@/components/pageLayout";
+import { ThemeProvider } from "@/components/theme/theme-provider"
+import PageLayout from "@/components/layouts/pageLayout";
 
 import { GeistSans } from "geist/font/sans";
 export const metadata = {

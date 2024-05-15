@@ -1,28 +1,18 @@
-import Bio from "@/components/bio";
-import Repositories from "@/components/githubRepos";
+import Bio from "@/components/bio/bio";
+import Repositories from "@/components/repositories/githubRepos";
 import Link from "next/link";
-
+import LatestRepositories from "@/components/repositories/page";
 export default function HomePage() {
   return (
     <main className="flex-1">
       {/* Main content */}
-      <div className="flex-1 flex  flex-col ">
         {/* Description */}
       <Bio/>
-      <div className=" py-2 flex justify-between items-center">
-        <span className="text-2xl font-bold">Latest Repositories </span>
-        <Link href="https://github.com/CodeWithArtemis" className="text-mauve/80 hover:text-mauve">
-        See More..
-        </Link>
-      </div>
-        {/* Projects */}
-
-<Repositories/>
+      <LatestRepositories/>
         {/* Blogs */}
         <div className="h-40 bg-surface2 flex items-center justify-center">
           BLOGS
         </div>
-      </div>
     </main>
   );
 }

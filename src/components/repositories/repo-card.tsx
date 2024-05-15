@@ -19,21 +19,19 @@ const RepoCard = ({props}:{props:ProjectPrp}) => {
   return (
     <Link href={props.html_url} className='text-mauve/80 hover:text-mauve hover:scale-105 duration-200  transition-transform'> 
 
-    <Card className='bg-base shadow-md  rounded-lg overflow-hidden'>
+    <Card className='dark:bg-base bg-card  shadow-md  rounded-lg overflow-hidden'>
   <CardHeader className='flex  justify-between flex-1  text-wrap '>
+<CardTitle className='text-sm font-bold text-primary  dark:text-mauve/80 flex '>
+{props.name}
 
-    <div className='flex '>
-      <div className='text-sm   font-bold mr-2 mb- text-maroon'> 
-      {props.name}
+</CardTitle>
 
-      </div>
-    </div>
-    <CardDescription className='min-h-12 text-subtext1 flex text-wrap text-sm flex-1 '>
+    <CardDescription className='min-h-12 text-secondary-foreground dark:text-secondary-foreground flex text-wrap text-sm flex-1 '>
       {props.description}
     </CardDescription>
   </CardHeader>
   <CardFooter className='flex  items-center justify-between px-2 py-2 border-b-4'>
-    <p className='text-subtext0 flex justify-end text-sm bg-mantle border-b-2 px-2 py-1 rounded-full'>
+    <p className='text-accent dark:text-accent flex justify-end text-sm bg-card-foreground  border-b-2 px-2 py-1 rounded-full'>
       {props.language}
     </p>
   </CardFooter>
