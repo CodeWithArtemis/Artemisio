@@ -1,6 +1,9 @@
 import React from 'react'
 import Image from 'next/image'  
+import {posts} from "@/../.velite"
+ 
 const Bio = () => {
+console.log(posts)
   return (
     <div className="   flex items-center justify-evenly pr-4 py-10 text-2xl  "> 
 <div className=' flex flex-1 mr-5  my-3 '>

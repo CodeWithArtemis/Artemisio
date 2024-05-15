@@ -26,10 +26,11 @@ const RepoCard = ({props}:{props:ProjectPrp}) => {
 
 </CardTitle>
 
-    <CardDescription className='min-h-12 text-secondary-foreground dark:text-secondary-foreground flex text-wrap text-sm flex-1 '>
+    </CardHeader>
+    <CardContent className='min-h-20 text-secondary-foreground dark:text-secondary-foreground flex text-wrap text-sm flex-1 '>
       {props.description}
-    </CardDescription>
-  </CardHeader>
+    </CardContent>
+
   <CardFooter className='flex  items-center justify-between px-2 py-2 border-b-4'>
     <p className='text-accent dark:text-accent flex justify-end text-sm bg-card-foreground  border-b-2 px-2 py-1 rounded-full'>
       {props.language}

@@ -2,6 +2,10 @@
 import {useEffect,useState} from "react";
 import axios from "axios";
 import RepoCard from "./repo-card"; 
+/*
+* Defines the Repositories component that fetches and displays repositories from the GitHub API. *
+*/
+
 const Repositories = ()=>{
    interface Repo{
     name:string,
@@ -20,7 +24,7 @@ useEffect(()=>{
             console.error("Error fetching repos:", error);
         }
     }
-    void fetchRepos(); // Make sure to handle the promise here
+    void fetchRepos(); 
 }, []);
 
     return (

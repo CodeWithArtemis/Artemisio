@@ -24,8 +24,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <PageLayout>
         <Navbar/>
+
+            <PageLayout>
 
         {children}
         </PageLayout>

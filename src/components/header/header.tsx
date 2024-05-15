@@ -13,15 +13,17 @@ const Navbar = () => {
     console.log(isActive("/"));
     const {links,socialLinks,}=data
     return (
-    <header className="border-b-2 mx-auto h-[15v] w-full items-center  justify-between  pt-4 ">
-      <div className="mx-auto flex flex-row items-center  justify-between  py-2">
+        <header className=" sticky top-0 backdrop-blur-sm support-backdrop:bg-background/60 bg-background/80  border-b-2  h-[15v] w-full   flex justify-center flex-col  pt-4 ">
+      <div className="mx-auto w-full  md:w-10/12 lg:w-8/12 " >
+
+      <div className="  flex flex-row items-center  justify-between py-2">
         <Link className="font-bold" href="/">
-          <div className="text-2xl font-bold first-letter:text-3xl ">
+          <div className="text-2xl font-bold flex  first-letter:text-3xl ">
             Artemisio
 
           </div>
         </Link>
-        <nav className="flex items-center space-x-2">
+        <nav className="flex justify-start space-x-2">
     <div  className="flex items-center space-x-2">
       {
         socialLinks.map((link,index)=>(
@@ -34,7 +36,7 @@ const Navbar = () => {
         ))
         
       }
-                      <ModeToggle/>
+                      <ModeToggle />
                       </div>
 
       </nav>
@@ -44,7 +46,7 @@ const Navbar = () => {
     links.map((link,index)=>(
 <Link href={link.link} key={index}  className="flex cursor-pointer items-center  justify-center   space-x-1 py-3 "> 
     {renderIcon(link.icon)}
-    <div className={cn("pt-1  transition-all duration-150 hover:text-accent-foreground",isActive(link.link)?"":"text-accent dark:text-surface2 dark:hover:text-subtext0")}>
+    <div className={cn("pt-1  text-2xl transition-all  duration-150 hover:text-accent-foreground",isActive(link.link)?"":"text-accent dark:text-surface2 dark:hover:text-subtext0")}>
         {link.title}
 
     </div>
@@ -53,8 +55,11 @@ const Navbar = () => {
     ))
 }
 </div>
+</div>
 
     </header>
+
+    
   );
 };
 
