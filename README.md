@@ -1,6 +1,11 @@
+# Artemisio's Blog
+This is my website
 
-## Todos
+Currently it is a work in progress
 
-- [X] Init
-- [X] Base Skeleton
-- [X] Header (Fix the cursed code)
+## Currently Working on 
+![Version 2](/public/V2.svg)
+
+ ## V1![Version 1](/public/V1.png)
+
+
