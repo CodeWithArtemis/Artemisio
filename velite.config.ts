@@ -1,10 +1,22 @@
 import {defineConfig,defineCollection,s} from 'velite';
+import rehypeSlug from "rehype-slug";
+import rehypePrettyCode from 'rehype-pretty-code'
+
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 const computedFields=<T extends{slug:string}>(data: T)=>(
   {
     ...data,
     slugAsParams:data.slug.split('/').slice(1).join('/')
   }
 )
+interface Options {
+
+}
+const options = {
+  theme:"catppuccin-macchiato",
+  grid: false,
+
+};
 const posts=defineCollection({
   name:'Post', 
   pattern:"blog/**/*.mdx",
@@ -30,7 +42,18 @@ export default defineConfig({
   },
   collections:{posts},
   mdx:{
-    rehypePlugins:[],
+    rehypePlugins:[ rehypeSlug,
+      [rehypePrettyCode,options],
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "wrap",
+          properties: {
+            className: ["subheading-anchor"],
+            ariaLabel: "Link to section",
+          },
+        },
+      ],],
     remarkPlugins:[ ]
   }
 })

@@ -9,18 +9,18 @@ interface PostItemProps {
 }
 export function PostItem({slug,title,description}:PostItemProps) {
     return(
-        <article className="flex flex-col gap-2 border-border border-b py-3">
-            <h2 className="font-bold text-2xl">
+        <article className="flex flex-col gap-2 border-border border-b py-3 bg-mantle px-4">
+            <div className="hover:text-primary font-bold text-2xl transition-all duration-100 hover:underline inline-block">
                 <Link href={`/${slug}`}>{title}</Link>
 
-            </h2>
+            </div>
             <div className="max-w-none text-muted-foreground">
                 {description}
             </div>
-            <Link href={`/${slug}`}>
+            <Link className="flex justify-end hover:text-primary" href={`/${slug}`}>
                 Read More...
-                </Link>
 
+                </Link>
 
         </article>
     )
