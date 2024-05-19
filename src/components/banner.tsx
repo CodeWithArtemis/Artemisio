@@ -3,7 +3,7 @@ import React from 'react'
 
 const banner = () => {
   return (
-<div className=' flex justify-center gap-3 items-center bg-rose-500 text-2xl  '>  
+<div className=' flex justify-center gap-3 items-center bg-rose-500 text-lg md:text-2xl  '>  
     <div className='flex items-center '>
         This Site is under construction
     </div>

@@ -3,8 +3,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import data from "@/data/Header.json";
 import { cn } from "@/lib/utils";
-import { ModeToggle } from "../theme/theme-button";
+import { Button } from "../ui/button";
 import SideNavigation from "../ui/sideNav";
+import { GoDownload } from "react-icons/go";
+
 const HeaderV2 = () => {
     const pathname = usePathname();
     const { links, socialLinks } = data;
@@ -33,9 +35,13 @@ const HeaderV2 = () => {
 </div>
 
         <div className="hidden items-center md:flex justify-center gap-4 py-3 ">
-<ModeToggle/>
         {/* <button className=" rounded:lg px-4   cursor-pointer items-center justify-center space-x-1 py-3 bg-lavender"> */}
           {/* Resume */}
+          <Button variant="secondary" className="flex gap-2 text-lg py-3 px-5">
+            Resume
+          <GoDownload/>  
+          </Button>
+
         {/* </button> */}
         </div>
       </div>
