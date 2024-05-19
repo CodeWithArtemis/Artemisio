@@ -5,7 +5,7 @@ import { PostItem } from "@/components/post-item";
 import Link from "next/link";
 export default function HomePage() {
   return (
-    <main className="flex-1">
+    <main className="flex-1 ">
       {/* Main content */}
       {/* Description */}
       <Bio />

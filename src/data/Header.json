@@ -1,23 +1,19 @@
 {
     "links": [
       {
-        "title": "Home",
-        "icon": "FaHome",
+        "title": "About Me",
         "link": "/"
       },
       {
         "title": "Projects",
-        "icon": "FaCode",
         "link": "/projects"
       },
       {
         "title": "Blogs",
-        "icon": "MdArticle",
         "link": "/blog"
       },
       {
         "title": "Contacts",
-        "icon": "IoMdContact",
         "link": "/contacts"
       }
     ],

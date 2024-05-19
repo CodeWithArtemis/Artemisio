@@ -1,9 +1,7 @@
 import React from 'react'
 import Image from 'next/image'  
-import {posts} from "@/../.velite"
  
 const Bio = () => {
-console.log(posts)
   return (
     <div className="   flex items-center justify-evenly pr-4 py-10 text-2xl  "> 
 <div className=' flex flex-1 mr-5  my-3 '>
@@ -14,7 +12,7 @@ console.log(posts)
           </div>
        <div className="flex p-2 ml-5 rounded-full">
 
-<Image className='rounded-full border-b-4 border-mauve' src="/Artemisio.jpg" alt="Artemisio" width={250} height={250} />
+<Image className='rounded-full border-b-4 border-mauve hidden md:flex' src="/Artemisio.jpg" alt="Artemisio" width={250} height={250} />
 </div>
 </div>  
   )

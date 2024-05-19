@@ -16,7 +16,7 @@ export default async function page  (params: {params: {slug: string}})  {
     return (
 
 
-        <div className='flex flex-col gap-2 py-3 max-w-4xl mx-auto'>
+        <div className='flex flex-col gap-2 py-3 max-w-5xl mx-auto'>
             <div className=' mt-4 flex items-center flex-col '>
 
             <Mdx code={post?.body} />
