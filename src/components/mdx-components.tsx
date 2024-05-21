@@ -2,10 +2,11 @@ import * as React from "react";
 import Image from "next/image";
 import * as runtime from "react/jsx-runtime";
 import { cn } from "@/lib/utils";
+import { Callout } from '@/components/alert';
 
-const useMDXComponent = (code) => {
+const useMDXComponent= (code:string)=>{
   const fn = new Function(code);
-  return fn({ ...runtime }).default;
+  return fn({...runtime}).default;
 };
 
 const components = {
@@ -190,7 +191,11 @@ interface MdxProps {
 
 export function MDXContent({ code, components }: MdxProps) {
   const Component = useMDXComponent(code);
-  return <Component components={{ Image, ...components }} />;
+  return 
+  <div className="prose prose-lg mx-auto">
+
+  <Component components={{ Image, ...components }} />;
+</div>
 }
 
 export function Mdx({ code }: MdxProps) {

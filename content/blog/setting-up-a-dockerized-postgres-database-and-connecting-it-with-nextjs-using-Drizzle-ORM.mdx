@@ -1,0 +1,172 @@
+---
+title: Setting up a dockerized postgres database and connecting it with nextjs using Drizzle-ORM
+description: "Setup a dockerized postgres database and connect it with nextjs using Drizzle-ORM"
+date: 2024-05-18
+published: true
+
+---
+
+## Prerequisites
+
+1. Ensure Docker is installed and configured on your system.
+2. Set up a Next.js project.
+3. Basic familiarity with Docker and Next.js.
+
+## Introduction
+
+Hey everyone! Running a database locally during development is essential for an efficient workflow. One of the best ways to achieve this is by using a Docker container. In this blog, we'll explore how to set up a local PostgreSQL environment using Docker and connect it with a Next.js application using Drizzle ORM.
+
+Running a database locally using Docker offers many advantages:
+
+1. **Portability**: Docker containers ensure consistent database environments across different systems.
+2. **Isolation**: Docker containers provide isolated environments for PostgreSQL databases, avoiding conflicts with other software installed on your machine.
+3. **Ease of Use**: Docker simplifies the setup process, making it easy to start, stop, and manage PostgreSQL instances.
+
+## Step 1: Create a Docker Compose File
+
+In the root directory of the project, run:
+```bash
+touch docker-compose.yml
+```
+Open the file and add the following lines of code to create a bare-bones PostgreSQL container:
+```yaml
+version: "3.9"
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  postgres:
+    driver: bridge
+```
+In this file, we're creating a PostgreSQL container using the `postgres` image from Docker Hub. We're passing some environment variables, `POSTGRES_PASSWORD` and `PGDATA`, and using volumes to make the data persist over reloads and restarts. We're also providing a port.
+
+After setting up this file, go back to your terminal and run:
+```bash
+docker-compose up
+```
+If everything is set up correctly, you should see:
+**IMAGE**
+
+And yeah, the database is set up!
+
+## Step 2: Connect to an ORM
+
+This step can differ based on the ORM of your choice. If you're unfamiliar with ORMs, they're basically **Object-Relational Mappers**. An ORM allows you to interact with your database using an object-oriented paradigm rather than writing raw SQL queries. It translates data between incompatible type systems in object-oriented programming languages and relational databases.
+
+In this project, we'll be using Drizzle. So, head out to the [Drizzle Docs](https://orm.drizzle.team/docs/get-started-postgresql#postgresjs) and install the dependencies:
+```bash
+pnpm add drizzle-orm postgres
+pnpm add -D drizzle-kit
+```
+Next, in the `app` directory, create a folder `server` and inside it, create a `index.ts` and a `schema.ts`:
+```bash
+cd app
+mkdir server && cd server && touch index.ts schema.ts
+```
+Inside the `index.ts`, add:
+```ts
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
+import { env } from "~/env";
+import * as schema from "./schema";
+
+// creating a global object that has a property `conn` of type `postgres.Sql`
+
+const globalForDb = globalThis as unknown as {
+  conn: postgres.Sql | undefined;
+};
+
+// if a connection doesn't exist, we're creating a new connection using the PostgreSQL client
+const conn = globalForDb.conn ?? postgres(env.DATABASE_URL);
+
+// reusing database connection in production
+if (env.NODE_ENV !== "production") globalForDb.conn = conn;
+
+// initializing the Drizzle ORM with the established connection and the schema definitions
+
+export const db = drizzle(conn, { schema });
+```
+This code sets up and exports a reusable database connection using Drizzle ORM and a PostgreSQL client.
+
+In the `schema.ts` file, add a simple schema for testing:
+```ts
+import { pgTable, serial } from "drizzle-orm/pg-core";
+export const post = pgTable("post", {
+  id: serial("id").primaryKey(),
+});
+```
+Also, create a file `drizzle.config.ts` and add the following block of code:
+```ts
+import { env } from "@/env";
+import { defineConfig } from "drizzle-kit";
+
+export default defineConfig({
+  schema: "./src/server/schema.ts",
+  dialect: "postgresql",
+  dbCredentials: {
+    url: env.DATABASE_URL,
+  },
+  verbose: true,
+  strict: true,
+});
+```
+## Setting up env.ts for type-safe env
+
+Add this package:
+```bash
+pnpm add @t3-oss/env-nextjs
+```
+We're using this package so that we can only pass type-safe environmental variables in our project. This utilizes Zod for the type safety.
+
+Create a file `env.ts` in the `app` folder:
+```ts
+import { createEnv } from "@t3-oss/env-nextjs";
+import { z } from "zod";
+export const env = createEnv({
+  server: {
+    DATABASE_URL: z.string().url(),
+    NODE_ENV: z.string().min(1),
+  },
+  client: {},
+  runtimeEnv: {
+    NODE_ENV: process.env.NODE_ENV,
+    DATABASE_URL: process.env.DATABASE_URL,
+  },
+});
+```
+## Setup .env
+
+In the `.env` file, add a `DATABASE_URL` in our case, it should be:
+```ts
+DATABASE_URL="postgresql://postgres:password@localhost:5432/postgres"
+```
+## Testing
+
+First, verify whether the PostgreSQL container is running:
+```bash
+docker ps
+```
+In the `package.json` file, add the following scripts:
+```json
+"db:push": "drizzle-kit push",
+"db:studio": "drizzle-kit studio",
+```
+Save all the changes and open the terminal and run:
+```
+pnpm run db:push
+pnpm run db:studio
+```
+In the browser, open [Drizzle Studio](https://local.drizzle.studio/) and verify whether the `post` table was created. If so, you have just created a Dockerized PostgreSQL instance and successfully connected it with your Next.js project.

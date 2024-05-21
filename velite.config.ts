@@ -9,9 +9,7 @@ const computedFields=<T extends{slug:string}>(data: T)=>(
     slugAsParams:data.slug.split('/').slice(1).join('/')
   }
 )
-interface Options {
 
-}
 const options = {
   theme:"catppuccin-macchiato",
   grid: false,
@@ -25,7 +23,6 @@ const posts=defineCollection({
     title: s.string().max(99),
     description: s.string().max(999).optional(),
     date: s.isodate(),
-    published: s.boolean().default(true),
     body: s.mdx(),
   })
   .transform(computedFields),
