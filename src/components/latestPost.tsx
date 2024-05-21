@@ -5,7 +5,7 @@ import { posts } from '#site/content';
 
 const LatestPost = () => {
   return (
-    <div className=' relative  flex-col '>
+    <div className=' flex flex-col '>
 <div className=" justify-start gap-2 py-3 text-3xl font-bold">
           My latest Posts
         </div>
@@ -17,12 +17,13 @@ const LatestPost = () => {
                 slug={post.slug}
                 title={post.title}
                 description={post.description}
+                Banner={post.blogImage}
               />
             );
           })}
 
           <Link href="/blog">
-            <div className="flex items-center justify-center gap-2 bg-primary/80  py-3 hover:bg-primary/40 transition-all duration-100 ">
+            <div className="hidden md:flex items-center justify-center gap-2 bg-primary/80  py-3 hover:bg-primary/40 transition-all duration-100 ">
               View All my blogs
             </div>
           </Link>

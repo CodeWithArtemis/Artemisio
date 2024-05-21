@@ -13,7 +13,7 @@ const components = {
   h1: ({ className, ...props }) => (
     <h1
       className={cn(
-        "mt-4 text-5xl  flex items-center justify-center font-extrabold tracking-tight leading-tight",
+        "mt-4 text-5xl  hover flex items-center justify-center font-extrabold tracking-tight leading-tight",
         className
       )}
       {...props}
@@ -22,7 +22,7 @@ const components = {
   h2: ({ className, ...props }) => (
     <h2
       className={cn(
-        "mt-8 text-3xl font-semibold tracking-tight border-b-2 pb-2",
+        "mt-8 text-4xl  font-semibold tracking-tight border-b-2 pb-4",
         className
       )}
       {...props}
@@ -67,7 +67,7 @@ const components = {
   a: ({ className, ...props }) => (
     <a
       className={cn(
-        "text-blue-600 hover:underline transition-all duration-100 hover:text-primary",
+        "text-text hover:underline transition-all duration-100 hover:text-blue",
         className
       )}
       {...props}
@@ -76,7 +76,7 @@ const components = {
   p: ({ className, ...props }) => (
     <p
       className={cn(
-        "mt-4 text-lg leading-relaxed line-height-[1.5]",
+        "mt-4 text-subtext0  text-xl leading-relaxed line-height-[1.5]",
         className
       )}
       {...props}
@@ -85,7 +85,7 @@ const components = {
   ul: ({ className, ...props }) => (
     <ul
       className={cn(
-        "my-6 ml-6 list-disc space-y-2",
+        "my-6 ml-6 text-lg list-disc space-y-2 text-subtext0 ",
         className
       )}
       {...props}
@@ -94,7 +94,7 @@ const components = {
   ol: ({ className, ...props }) => (
     <ol
       className={cn(
-        "my-6 ml-6 list-decimal space-y-2",
+        "my-6 ml-6 text-lg list-decimal space-y-2 text-subtext0 ",
         className
       )}
       {...props}
@@ -103,7 +103,7 @@ const components = {
   li: ({ className, ...props }) => (
     <li
       className={cn(
-        "mt-2",
+        "mt-2 text-subtext0 ",
         className
       )}
       {...props}
@@ -112,7 +112,7 @@ const components = {
   blockquote: ({ className, ...props }) => (
     <blockquote
       className={cn(
-        "mt-6 border-l-4 pl-4 italic text-gray-600",
+        "mt-6 border-l-4 pl-4 italic text-gray",
         className
       )}
       {...props}
@@ -166,7 +166,7 @@ const components = {
   pre: ({ className, ...props }) => (
     <pre
       className={cn(
-        "my-4 p-4 bg-gray-900 text-gray-100 rounded-lg shadow-inner overflow-x-auto",
+        "my-4 p-4 bg-gray-900  text-gray-100 rounded-lg shadow-inner overflow-x-auto",
         className
       )}
       {...props}
@@ -175,7 +175,7 @@ const components = {
   code: ({ className, ...props }) => (
     <code
       className={cn(
-        " px-1 py-0.5 rounded text-sm",
+        " px-1 py-0.5 rounded text-sm ",
         className
       )}
       {...props}

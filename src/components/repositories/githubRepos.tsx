@@ -30,7 +30,7 @@ useEffect(()=>{
     return (
 <div>
 {repos.length > 0 ? (
-<div className="grid grid-cols-3 gap-4  min-h-[40vh]">
+<div className="flex flex-col md:flex-row  gap-4  flex-1 min-w-16">
 
                 {repos.map((repo,index) =>
                     <RepoCard  key={index} props={repo}/> 

@@ -24,6 +24,9 @@ const posts=defineCollection({
     description: s.string().max(999).optional(),
     date: s.isodate(),
     body: s.mdx(),
+    blogImage: s.string().max(99),
+
+
   })
   .transform(computedFields),
 });

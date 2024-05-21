@@ -3,8 +3,9 @@ title: Setting up a dockerized postgres database and connecting it with nextjs u
 description: "Setup a dockerized postgres database and connect it with nextjs using Drizzle-ORM"
 date: 2024-05-18
 published: true
-
+blogImage: "/docker_postgres.png"
 ---
+# Setting up local postgres database using docker and drizzle in Nextjs
 
 ## Prerequisites
 
@@ -165,7 +166,7 @@ In the `package.json` file, add the following scripts:
 "db:studio": "drizzle-kit studio",
 ```
 Save all the changes and open the terminal and run:
-```
+```bash
 pnpm run db:push
 pnpm run db:studio
 ```

@@ -8,11 +8,11 @@ const page = () => {
         My Blog Posts
     </div>
     
-<div className='flex flex-col gap-2 border-border border-b py-3'>
+<div className='flex flex-col gap-2  py-3'>
 {posts.map((post,index)=>{
         return(
             
-          <PostItem key={index}  slug={post.slug} title={post.title} description={post.description} />
+          <PostItem key={index}  slug={post.slug} title={post.title} description={post.description} Banner={post.blogImage} />
         )
       })}
 
