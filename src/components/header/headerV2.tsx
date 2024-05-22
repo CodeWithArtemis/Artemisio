@@ -13,7 +13,7 @@ const HeaderV2 = () => {
     const isActive = (path: string) => pathname === path;
   
     return (
-      <div className='sticky top-0 backdrop-blur-xl supports-[backdrop-blur]: flex border-b flex-row gap-3  max-width-3xl py-3 px-3 text-2xl mx-auto my-auto md:justify-evenly md:items-center'>
+      <div className='sticky top-0 backdrop-blur-xl supports-[backdrop-blur]: flex border-b flex-row gap-3 w-full md:max-width-3xl py-3 px-3 text-2xl mx-auto my-auto md:justify-evenly md:items-center'>
         <div className='mx-auto lg:mx-0  text-6xl md:text-4xl     '>
           𝕬𝖗𝖙𝖊𝖒𝖎𝖘𝖎𝖔
         </div>

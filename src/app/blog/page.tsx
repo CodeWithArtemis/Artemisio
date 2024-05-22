@@ -14,6 +14,7 @@ const page = () => {
             
           <PostItem key={index}  slug={post.slug} title={post.title} description={post.description} Banner={post.blogImage} />
         )
+        
       })}
 
 </div>

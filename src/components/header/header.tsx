@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import renderIcon from "@/lib/iconUtils";
-import data from "@/data/Header.json";
+import data from "@/data/header/Header.json";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "../theme/theme-button";
