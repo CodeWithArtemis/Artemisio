@@ -5,7 +5,7 @@ date: 2024-05-18
 published: true
 blogImage: "/docker_postgres.png"
 ---
-# Setting up local postgres database using docker and drizzle in Nextjs
+# Setting up local Postgres database using docker and drizzle in Nextjs
 
 ## Prerequisites
 
@@ -22,6 +22,9 @@ Running a database locally using Docker offers many advantages:
 1. **Portability**: Docker containers ensure consistent database environments across different systems.
 2. **Isolation**: Docker containers provide isolated environments for PostgreSQL databases, avoiding conflicts with other software installed on your machine.
 3. **Ease of Use**: Docker simplifies the setup process, making it easy to start, stop, and manage PostgreSQL instances.
+
+## Project Tree
+![projectTree](/projecttreedocker.png)
 
 ## Step 1: Create a Docker Compose File
 
@@ -58,8 +61,9 @@ After setting up this file, go back to your terminal and run:
 ```bash
 docker-compose up
 ```
+
 If everything is set up correctly, you should see:
-**IMAGE**
+![dockercompose](/dockercompose.png)
 
 And yeah, the database is set up!
 
@@ -168,6 +172,11 @@ In the `package.json` file, add the following scripts:
 Save all the changes and open the terminal and run:
 ```bash
 pnpm run db:push
+```
+![push](/dbpush.png)
+```bash
 pnpm run db:studio
 ```
+![studio](/dbstudio.png)
+
 In the browser, open [Drizzle Studio](https://local.drizzle.studio/) and verify whether the `post` table was created. If so, you have just created a Dockerized PostgreSQL instance and successfully connected it with your Next.js project.

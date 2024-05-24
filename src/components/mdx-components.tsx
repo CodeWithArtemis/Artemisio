@@ -4,7 +4,7 @@ import * as runtime from "react/jsx-runtime";
 import { cn } from "@/lib/utils";
 import { Callout } from '@/components/alert';
 
-const useMDXComponent= (code:string)=>{
+const useMDXComponent= (code:string ) =>{
   const fn = new Function(code);
   return fn({...runtime}).default;
 };
@@ -13,7 +13,7 @@ const components = {
   h1: ({ className, ...props }) => (
     <h1
       className={cn(
-        "mt-4 text-5xl  hover flex items-center justify-center font-extrabold tracking-tight leading-tight",
+        "mt-4  text-5xl whitespace-pre-wrap  hover flex items-center justify-center font-extrabold tracking-tight leading-tight",
         className
       )}
       {...props}

@@ -15,8 +15,8 @@ export default async function page  (params: {params: {slug: string}})  {
     return (
 
 
-        <div className='flex flex-col gap-2 py-3 max-w-5xl mx-auto'>
-            <div>
+        <div className='flex flex-col gap-2 py-3  mx-auto w-full h-full '>
+            <div className=''>
                 <Image className='w-full h-full' src={post?.blogImage} alt={post?.title} width={400} objectFit='cover'  height={400} />
             </div>
 
