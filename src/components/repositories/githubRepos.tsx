@@ -5,7 +5,6 @@ import RepoCard from "./repo-card";
 /*
 * Defines the Repositories component that fetches and displays repositories from the GitHub API. *
 */
-
 const Repositories = ()=>{
    interface Repo{
     name:string,

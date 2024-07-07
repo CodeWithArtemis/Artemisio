@@ -8,8 +8,7 @@ const latestRepositories = () => {
         <Link href="https://github.com/CodeWithArtemis" className="text-primary hover:text-mauve">
         See More..
         </Link>
-        {/* Projects */}
-
+        {/* Projects */}       
 </div>
 <Repositories/>
 

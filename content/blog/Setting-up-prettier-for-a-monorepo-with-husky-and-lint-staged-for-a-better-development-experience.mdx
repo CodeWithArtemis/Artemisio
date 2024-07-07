@@ -1,0 +1,208 @@
+---
+title: Setting up a controlled development environment for a monorepo Part-2 
+description: Setting up prettier+Nx+Husky+Lint-Staged+scripts for a streamlined development workflow
+date: 2024-07-07
+published: true
+blogImage: "/BlogAssets/PrettierTypescriptNx.png"
+
+---
+
+Welcome to this comprehensive guide on setting up Prettier in a monorepo! In this blog, I'll walk you through the steps to manage formatting, linting, and type-checking across all projects and packages in your monorepo. We'll leverage several tools to streamline our development workflow:
+
+- **Prettier**: For consistent code formatting.
+- **TypeScript**: For robust linting and type safety.
+- **Husky**: To automate validations on commits.
+- **Nx**: To smartly manage scripts and cache across the monorepo  
+- **lint-staged**: To ensure validations are applied only to staged files.
+
+
+
+## This is the final folder structure which i will be referencing 
+```js
+├── [4.0K]  apps/
+│   ├── [4.0K]  api/
+│   │   ├── [4.0K]  dist/  
+│   │   ├── [4.0K]  src/
+│   │   ├── [4.0K]  test/
+│   │   ├── [ 171]  nest-cli.json
+│   │   ├── [2.0K]  package.json
+│   │   ├── [3.3K]  README.md
+│   │   ├── [  97]  tsconfig.build.json
+│   │   └── [ 546]  tsconfig.json
+│   └── [4.0K]  web/
+│       ├── [4.0K]  public/
+│       ├── [4.0K]  src/
+│       │   └── [4.0K]  app/
+│       │       ├── [  59]  globals.css
+│       │       ├── [ 481]  layout.tsx
+│       │       └── [ 126]  page.tsx
+│       ├── [  92]  next.config.mjs
+│       ├── [ 201]  next-env.d.ts
+│       ├── [ 619]  package.json
+│       ├── [ 135]  postcss.config.mjs
+│       ├── [1.4K]  README.md
+│       ├── [ 507]  tailwind.config.ts
+│       ├── [ 578]  tsconfig.json
+│       └── [ 86K]  tsconfig.tsbuildinfo
+├── [4.0K]  libs/
+│   └── [4.0K]  sample-library/
+│       ├── [4.0K]  Dist/
+│       ├── [  51]  index.ts
+│       ├── [ 260]  package.json
+│       └── [ 12K]  tsconfig.json
+├── [ 497]  nx.json
+├── [ 788]  package.json
+├── [263K]  pnpm-lock.yaml
+├── [  32]  pnpm-workspace.yaml
+├── [ 845]  README.md
+└── [ 256]  tsconfig.json
+
+```
+
+
+---
+
+
+
+## Project Structure
+
+In my project, I have two workspaces mentioned in my `pnpm-workspace.yaml`:
+
+```yaml
+packages:
+  - 'apps/*'
+  - 'libs/*'
+```
+
+The `apps` directory contains:
+- **frontend**: Next.js application.
+- **backend**: Nest.js application.
+
+The `libs` directory contains:
+- **barebone TypeScript**: A sample library to test a local library. you can checkout my blog on setting up typescript from scratch for a mono repo [Blog](https://artemisio.vercel.app/blog/Setting-up-typescript-for-a-monorepo-from-scratch)
+
+## Step 1: Install the Dependencies
+
+First, install the necessary dependencies in the root directory:
+
+```shell
+pnpm add -D prettier -w
+pnpm add --save-dev husky lint-staged -w
+npx nx@latest init
+```
+
+The `nx` command will prompt you to choose the order in which you want to run the scripts. Arrange them according to your preference. Keep in mind this creates an `nx.json` file, allowing easy addition or editing of scripts in the future. Ensure caching is enabled. Here is my `nx.json`:
+
+```json
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/.next,build,dist"],
+      "cache": true
+    },
+    "lint": {
+      "dependsOn": ["^lint"],
+      "cache": true
+    },
+    "tsc": {
+      "cache": true
+    }
+  },
+  "defaultBase": "master"
+}
+```
+
+You can verify whether `nx` is working correctly by running:
+
+```bash
+pnpm exec nx run-many -t <some script that is common in all files>
+```
+
+![](/BlogAssets/Pasted-image-20240705144117.png)
+
+
+## Step 2: Create Files
+
+### Prettier Configuration
+
+Create a `.prettierrc` file in the root directory and add your required formatting rules. Here are the rules I used:
+
+```json
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "semi": false,
+  "tabWidth": 2,
+  "quoteProps": "as-needed",
+  "bracketSpacing": true,
+  "bracketSameLine": false
+}
+```
+
+### Adding Scripts
+
+In the root directory, add the following scripts to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "build": "pnpm exec nx run-many -t build",
+    "tsc": "pnpm exec nx run-many -t tsc",
+    "lint": "pnpm exec nx run-many -t lint",
+    "format": "prettier \"{apps,libs}/**/*.{ts,tsx,js,json}\" --ignore-path .gitignore",
+    "format:check": "pnpm format --check",
+    "format:write": "pnpm format --write",
+    "validate": "pnpm format:write && pnpm lint && pnpm tsc"
+  }
+}
+```
+
+#### Script Breakdown
+
+1. **build**: Runs the build script in all subprojects.
+2. **tsc**: The TypeScript compiler which outputs the compiled TypeScript code in CommonJS format. [Check out the TODO section for a detailed TypeScript setup](#).
+3. **lint**: Runs all available lint scripts, like ESLint.
+4. **format, format:write, format:check**: Scripts to use Prettier. 
+5. **validate**: Executes `format:write`, `lint`, and `tsc` scripts in order.
+
+### Set up lint-staged
+
+Add the following configuration to your `package.json` in the root directory:
+
+```json
+{
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "pnpm validate"
+  }
+}
+```
+
+This sets up lint-staged to run the `validate` script only on staged files.
+
+### Set up Husky
+
+Add a pre-commit hook in your `.husky` file:
+
+```sh
+pnpm lint-staged
+```
+
+This ensures the lint-staged command runs whenever you try to make a commit.
+
+---
+
+### Verification
+
+Let's verify the setup by intentionally causing errors. In my `sample-lib`, I have an `index.ts`. Let's break it:
+
+![alt](/BlogAssets/Pasted-image-20240705144117.png)
+
+After saving, try to stage the file and commit it.
+ You can see the error log here: [⚠ Running tasks for staged files... - Pastebin.com](https://pastebin.com/MrGaNSS9)
+
+As you can see, it prevented us from committing faulty code to our codebase, which is incredibly helpful.
+
+
+

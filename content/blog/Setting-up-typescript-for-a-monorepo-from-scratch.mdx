@@ -1,0 +1,108 @@
+---
+title: Setting up Typescript from Scratch
+description: This is a reference material for setting up typescript. I will be updating it in the future with content for testing, styling etc.
+
+date: 2024-07-07
+published: true
+blogImage: "/BlogAssets/Typescript.png"
+
+---
+
+
+
+
+
+### Introduction
+
+Nowadays, CLIs like Create-T3,have made development setup incredibly easy. However, there are times when we might still want to set up something from scratch to have full control and a deeper understanding of our project’s configuration. That’s why I’m writing these blogs—not only as a reference for you but also for myself—so we can both recall the steps involved in setting up our projects from the ground up.
+
+
+
+### Installing and Compiling TypeScript
+
+First, make sure you have a workable folder. Run the following commands to initialize a new project and install TypeScript:
+
+```bash
+pnpm init
+pnpm add -D typescript
+```
+
+Next, test out TypeScript by creating a `.ts` file and writing some code in it:
+
+```bash
+mkdir ./src
+touch ./src/index.ts
+```
+
+In the `index.ts` file, add the following code:
+
+```ts
+const a: number = 10;
+console.log(a);
+```
+
+To be able to run this TypeScript code, we first need to configure our TypeScript configuration file. Head to the terminal and type:
+
+```bash
+npx tsc --init
+```
+
+You should see the following output:
+
+```json
+Created a new tsconfig.json with:
+  target: es2016
+  module: commonjs
+  strict: true
+  esModuleInterop: true
+  skipLibCheck: true
+  forceConsistentCasingInFileNames: true
+
+You can learn more at https://aka.ms/tsconfig
+```
+
+Now, you can edit the `tsconfig.json` file according to your preferences. Check out what each field does in the [TypeScript: TSConfig Reference - Docs on every TSConfig option](https://www.typescriptlang.org/tsconfig/). 
+
+For minimal tweaking, change and add the following in `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist"
+  },
+  "include": ["./src/**/*"]
+}
+```
+
+Next, add a script in the `package.json` file:
+
+```json
+"scripts": {
+  "build": "tsc"
+}
+```
+
+Now, in the terminal, run:
+
+```bash
+pnpm build
+```
+
+This will compile the TypeScript files into CommonJS format in the `dist` directory. You can now view the compiled code in the `dist/index.js` file:
+
+```js
+"use strict";
+
+const a = 10;
+
+console.log(a);
+```
+
+---
+
